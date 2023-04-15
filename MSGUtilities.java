@@ -64,8 +64,8 @@ public static void fundsAvailable() {
                     msgCase.MSGApplication.WEEKS_IN_YEAR) +
                     expectedTotalWeeklyNetPayments));
             System.out.println ("\n\n\n Press ENTER to continue ...");
-            //int	c;
-            //c = System.in.read ();
+            int	c;
+            c = System.in.read ();
         }
         catch (Exception e)
         {

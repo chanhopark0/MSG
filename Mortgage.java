@@ -14,9 +14,9 @@ public class Mortgage extends FinancialInstrument
     private String	mortgageID;	// mortgage ID (stored as chars)
     private String	mortgageeName;	// names of mortgagees
     private float	price;	// price paid for mortgaged property
-    private Date	dateMortgageIssued;	// date mortgage was issued
+    private String	dateMortgageIssued;	// date mortgage was issued
     private float	currentWeeklyIncome;	// weekly income of mortgagees
-    private Date weeklyIncomeUpdated;	// date weekly income updated
+    private String weeklyIncomeUpdated;	// date weekly income updated
     private float	annualPropertyTax;	// annual property tax
     private float	annualInsurancePremium;	// annual insurance premium
     private float	mortgageBalance;	// mortgage balance
@@ -24,9 +24,9 @@ public class Mortgage extends FinancialInstrument
     public String getMortgageID() {return mortgageID;}
     public String getMortgageeName() {return mortgageeName; }
     public float getPrice() { return price; }
-    public Date getDateMortgageIssued() {return dateMortgageIssued; }
+    public String getDateMortgageIssued() {return dateMortgageIssued; }
     public float getCurrentWeeklyIncome() {return currentWeeklyIncome; }
-    public Date getWeeklyIncomeUpdated() {return weeklyIncomeUpdated; }
+    public String getWeeklyIncomeUpdated() {return weeklyIncomeUpdated; }
     public float getAnnualPropertyTax() {return annualPropertyTax; }
     public float getAnnualInsurancePremium() { return annualInsurancePremium; }
     public float getMortgageBalance() { return mortgageBalance; }
@@ -131,8 +131,8 @@ public class Mortgage extends FinancialInstrument
         i++;
         }
         String readRecordinput = input.toString();
-        DateFormat formatter = new SimpleDateFormat();
-        dateMortgageIssued = formatter.parse(readRecordinput);
+//        DateFormat formatter = new SimpleDateFormat();
+        dateMortgageIssued = readRecordinput;
         
         //dateMortgageIssued = new Date ();
 
@@ -157,8 +157,8 @@ public class Mortgage extends FinancialInstrument
         }
 
         String readweeklyIncomeUpdatedinput = input.toString();
-        DateFormat formatterWIU = new SimpleDateFormat();
-        weeklyIncomeUpdated = formatterWIU.parse(readweeklyIncomeUpdatedinput);
+//        DateFormat formatterWIU = new SimpleDateFormat("MM/dd/yyyy");
+        weeklyIncomeUpdated = readweeklyIncomeUpdatedinput;
         
         //weeklyIncomeUpdated = new Date (input.toString ());
         i++;
@@ -230,28 +230,28 @@ public class Mortgage extends FinancialInstrument
 // displayRecord displays the names of the fields of a mortgage record and their values.
         
         {
-        System.out.print ("Mortgage ID:" + mortgageID);
-        System.out.println ("\tMortgagee Name:" + mortgageeName);
+        System.out.print ("Mortgage ID:" + mortgageID + "\n");
+        System.out.println ("Mortgagee Name:" + mortgageeName);
         System.out.println ("Price :" + price);
-        System.out.print (" Date mortgage issued:");
+        System.out.print ("Date mortgage issued:" + dateMortgageIssued + "\n");
 
-        Calendar dateMortgageIssued = Calendar.getInstance();
+//        Calendar dateMortgageIssued = Calendar.getInstance();
         //cal.add(Calendar.DATE, -1);
         
 
 
         //System.out.print ((dateMortgageIssued.getMonth () + 1) + "/");
-        System.out.print ((dateMortgageIssued.get(Calendar.MONTH) + 1) + "/");
+//        System.out.print ((dateMortgageIssued.get(Calendar.MONTH) + 1) + "/");
 
         // System.out.print (dateMortgageIssued.getDate() + "/");
-        System.out.print ((dateMortgageIssued.get(Calendar.DATE) + "/"));
+//        System.out.print ((dateMortgageIssued.get(Calendar.DATE) + "/"));
 
         //System.out.println (dateMortgageIssued.getYear());
-        System.out.println (dateMortgageIssued.get(Calendar.YEAR));
+//        System.out.println (dateMortgageIssued.get(Calendar.YEAR));
 
         System.out.println ("Current weekly income: " + currentWeeklyIncome);
 
-        Calendar weeklyIncomeUpdated = Calendar.getInstance();
+//        Calendar weeklyIncomeUpdated = Calendar.getInstance();
 
         
         // System.out.print (" Date weekly income updated: ");
@@ -261,14 +261,14 @@ public class Mortgage extends FinancialInstrument
         // System.out.print ("Annual property tax:" + annualPropertyTax);
        
        
-        System.out.print (" Date weekly income updated: ");
-        System.out.print ((weeklyIncomeUpdated.get(Calendar.MONTH) + 1) + "/");
-        System.out.print (weeklyIncomeUpdated.get(Calendar.DATE) + "/");
-        System.out.println (weeklyIncomeUpdated.get(Calendar.YEAR));
-        System.out.print ("Annual property tax:" + annualPropertyTax);
+        System.out.print ("Date weekly income updated: " + weeklyIncomeUpdated + "\n");
+//        System.out.print ((weeklyIncomeUpdated.get(Calendar.MONTH) + 1) + "/");
+//        System.out.print (weeklyIncomeUpdated.get(Calendar.DATE) + "/");
+//        System.out.println (weeklyIncomeUpdated.get(Calendar.YEAR));
+        System.out.print ("Annual property tax:" + annualPropertyTax + "\n");
         
         
-        System.out.println ("\t\tAnnual insurance premium:" + annualInsurancePremium);
+        System.out.println ("Annual insurance premium:" + annualInsurancePremium);
         System.out.println ("Mortgage balance: " + mortgageBalance);
         }
 
@@ -292,14 +292,11 @@ public class Mortgage extends FinancialInstrument
         {
         try
         {
-        File	mortgageFile = new File("fmortgage.dat");// file of mortgage records
+        File	mortgageFile = new File("mortgage.dat");// file of mortgage records
         File	tempMortgageFile = new File ("mortgage.tmp");
 // temporary file of mortgage records
         Mortgage	mort = new Mortgage ();	// record to be checked
-        if (!mortgageFile.exists ())
-        {
-        return;
-        }
+        if (!mortgageFile.exists ()) return;
         RandomAccessFile inFile = new RandomAccessFile (mortgageFile, "r");
         RandomAccessFile outFile = new RandomAccessFile (tempMortgageFile, "rw");
         while (inFile.getFilePointer() != inFile.length())
@@ -480,13 +477,14 @@ public class Mortgage extends FinancialInstrument
                 }
                 Float tempFloat = Float.parseFloat(input.toString());
                 price = tempFloat.floatValue ();
-                System.out.println ("Enter date mortgage was issued (mm/dd/yy):");
+                System.out.println ("Enter date mortgage was issued (MM/dd/yyyy):");
                 input = new StringBuffer ();
                 while ((c = (char) System.in.read ()) != '\n')
                 {
                 input.append (c);
                 }
-                dateMortgageIssued = MSGUtilities.parseDate (input.toString());
+//                dateMortgageIssued = MSGUtilities.parseDate (input.toString());
+                dateMortgageIssued = input.toString();
                 System.out.println ("Enter current weekly income:");
                 input = new StringBuffer ();
                 while ((c = (char) System.in.read ()) != '\n')
@@ -495,7 +493,10 @@ public class Mortgage extends FinancialInstrument
                 }
                 tempFloat = Float.parseFloat(input.toString ());
                 currentWeeklyIncome = tempFloat.floatValue();
-                weeklyIncomeUpdated = new Date ();
+                Date now = new Date();
+                SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy");
+                String strDate = sdf.format(now);
+                weeklyIncomeUpdated = strDate;
                 System.out.println ("Enter annual property tax:");
                 input = new StringBuffer ();
                 while ((c = (char) System.in.read ()) != '\n')
@@ -681,10 +682,11 @@ public class Mortgage extends FinancialInstrument
                                 
                                 System.out.print ("\n\nOld mortgage date: ");
 
-
+                                SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy");
+                                Date pasedDate = sdf.parse(dateMortgageIssued);
 
                                 Calendar cal = new GregorianCalendar();
-                                cal.setTime (dateMortgageIssued);
+                                cal.setTime (pasedDate);
                                 // System.out.print ((dateMortgageIssued.getMonth () + 1) + "/");
                                 // System.out.print (dateMortgageIssued.getDate () + "/");
                                 
@@ -695,12 +697,12 @@ public class Mortgage extends FinancialInstrument
                                 
                                 System.out.println (cal.get(Calendar.YEAR));
                                 
-                                System.out.println ("Enter date the mortgage was issued (mm/dd/yy):");
+                                System.out.println ("Enter date the mortgage was issued (MM/dd/yyyy):");
                                 while ((c = (char) System.in.read ()) != '\n')
                                 {
                                 input.append (c);
                                 }
-                                dateMortgageIssued = MSGUtilities.parseDate (input.toString());
+                                dateMortgageIssued = input.toString();
                                 break;
                         case '4':
                                 System.out.println ("\n\nOld weekly income;" + currentWeeklyIncome);
@@ -711,7 +713,10 @@ public class Mortgage extends FinancialInstrument
                                 }
                                 tempFloat = Float.parseFloat(input.toString());
                                 currentWeeklyIncome = tempFloat.floatValue();
-                                weeklyIncomeUpdated = new Date ();
+                                Date now = new Date();
+                                SimpleDateFormat sdf2 = new SimpleDateFormat("MM/dd/yyyy");
+                                String strDate = sdf2.format(now);
+                                weeklyIncomeUpdated = strDate;
                                 break;
                         case '5':
                                 System.out.println ("\n\nOld annual property tax:" + annualPropertyTax);

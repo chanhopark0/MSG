@@ -1,25 +1,28 @@
 package msgCase;
 
+import org.junit.jupiter.api.DisplayNameGenerator;
+
 import java.text.SimpleDateFormat;
 import java.util.*;
 
 public class App {
     public static void main(String[] args) throws Exception {
         System.out.println("Hello, World!");
+//        Date now = new Date();
+//        SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy");
+//        String strDate = sdf.format(now);
+//        System.out.println(strDate);
+//        System.out.println(now.toString());
+//        Date parsedDate = sdf.parse(now.toString());
+//        System.out.print(parsedDate);
 
-//        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy";
-//
-//        Date testDate = new Date();
-////        String dateString = testDate.toString();
-        String dateString = "10/25/2022";
-//
-//        Date date = sdf.parse(dateString);
-//
-//        System.out.println(date);
-        SimpleDateFormat sdf  = new SimpleDateFormat("MM/dd/yyyy");
-        Date parse = sdf.parse(dateString);
-        Calendar  expectedAnnualReturnUpdated = Calendar.getInstance();
-        expectedAnnualReturnUpdated.setTime(parse);
-        System.out.println(expectedAnnualReturnUpdated.get(Calendar.MONTH) + "월 " + expectedAnnualReturnUpdated.get(Calendar.DATE) + "일 " + expectedAnnualReturnUpdated.get(Calendar.YEAR) + "년");
+        SimpleDateFormat sdf2 = new SimpleDateFormat("MM/dd/yy");
+        String testDate = "05/24/22";
+        Date parsedDate2 = sdf2.parse(testDate);
+        System.out.println(parsedDate2);
+
+        Calendar cal = new GregorianCalendar();
+//        cal.setTime();
+
     }
 }

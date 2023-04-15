@@ -11,8 +11,8 @@ public class Investment extends FinancialInstrument
     private String investmentID;
     private String investmentName;
     private float expectedAnnualReturn;
-    private SimpleDateFormat expectedAnnualReturnUpdated;
-    //private Calendar expectedAnnualReturnUpdated;
+//    private SimpleDateFormat expectedAnnualReturnUpdated;
+    private String expectedAnnualReturnUpdated;
 
     public String getInvestmentID() {
         return investmentID;
@@ -23,12 +23,12 @@ public class Investment extends FinancialInstrument
     public float getExpectedAnnualReturn() {
         return expectedAnnualReturn;
     }
-    public SimpleDateFormat getExpectedAnnualReturnUpdated() {
+//    public SimpleDateFormat getExpectedAnnualReturnUpdated() {
+//         return expectedAnnualReturnUpdated;
+//        }
+     public String getExpectedAnnualReturnUpdated() {
          return expectedAnnualReturnUpdated;
-        }
-    // public Calendar getExpectedAnnualReturnUpdated() {
-    //     return expectedAnnualReturnUpdated;
-    // }
+     }
 
 
     public float totalWeeklyReturnOnInvestment()
@@ -114,7 +114,7 @@ public class Investment extends FinancialInstrument
             i++;
         }
 
-        expectedAnnualReturnUpdated = new SimpleDateFormat(input.toString());
+        expectedAnnualReturnUpdated = input.toString();
         //SimpleDateFormat sdf  = new SimpleDateFormat("dd/MM/yyyy");
         // Date parse = sdf.parse(input.toString());
         // Calendar  expectedAnnualReturnUpdated = Calendar.getInstance();
@@ -264,7 +264,10 @@ public class Investment extends FinancialInstrument
         }
         Float newFloat = Float.parseFloat(input.toString());
         expectedAnnualReturn = newFloat.floatValue();
-        expectedAnnualReturnUpdated = new SimpleDateFormat();
+        Date now = new Date();
+        SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy");
+        String strDate = sdf.format(now);
+        expectedAnnualReturnUpdated = strDate;
     } catch (Exception e) {
         System.out.println("Error: Investment.readInvestmentData()");
         System.out.println("\t" + e);
@@ -300,7 +303,10 @@ public class Investment extends FinancialInstrument
                         }
                         Float tempFloat =Float.parseFloat(input.toString());
                         expectedAnnualReturn = tempFloat.floatValue();
-                        expectedAnnualReturnUpdated = new SimpleDateFormat();
+                        Date now = new Date();
+                        SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy");
+                        String strDate = sdf.format(now);
+                        expectedAnnualReturnUpdated = strDate;
                 } //SWITCH
             }
             catch (Exception e){
@@ -412,9 +418,10 @@ public class Investment extends FinancialInstrument
         // Calendar  expectedAnnualReturnUpdated = Calendar.getInstance();
         // expectedAnnualReturnUpdated.setTime(parse);
         // System.out.println(expectedAnnualReturnUpdated.get(Calendar.MONTH) + expectedAnnualReturnUpdated.get(Calendar.DATE) + expectedAnnualReturnUpdated.get(Calendar.YEAR));
-        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+        SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy");
         try{
-            Date parse = sdf.parse(expectedAnnualReturnUpdated.toString());
+
+            Date parse = sdf.parse(expectedAnnualReturnUpdated);
 
             Calendar ch = Calendar.getInstance();
             ch.setTime(parse);
