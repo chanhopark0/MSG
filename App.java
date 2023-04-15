@@ -20,6 +20,6 @@ public class App {
         Date parse = sdf.parse(dateString);
         Calendar  expectedAnnualReturnUpdated = Calendar.getInstance();
         expectedAnnualReturnUpdated.setTime(parse);
-        System.out.println(expectedAnnualReturnUpdated.get(Calendar.MONTH) + expectedAnnualReturnUpdated.get(Calendar.DATE) + expectedAnnualReturnUpdated.get(Calendar.YEAR));
+        System.out.println(expectedAnnualReturnUpdated.get(Calendar.MONTH) + "월 " + expectedAnnualReturnUpdated.get(Calendar.DATE) + "일 " + expectedAnnualReturnUpdated.get(Calendar.YEAR) + "년");
     }
 }
