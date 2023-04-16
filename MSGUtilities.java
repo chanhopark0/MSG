@@ -10,6 +10,11 @@ public class MSGUtilities {
         }
     } // clearScreen()
 
+    public  static void printMenu(String[] menuItems) {
+        for (String menuItem : menuItems) {
+            System.out.println(menuItem);
+        }
+    }
 //_______________________________________________________________________________________________________
 //
 
@@ -19,30 +24,33 @@ public class MSGUtilities {
 
         done = false;
         while (!done) {
-            MSGUtilities.clearScreen();
-            System.out.println("\t MAIN MENU\n\n");
-            System.out.println("\t MARTHA STOCKTON GREENGAGE FOUNDATION\n\n");
-            System.out.println("\t 1. Investment Data\n");
-            System.out.println("\t 2. Mortgage Data\n");
-            System.out.println("\t 3. Operating Expenses\n");
-            System.out.println("\t 4. Produce Reports\n");
-            System.out.println("\t 5. Quit\n\n");
-            System.out.println("Enter your choice and press <ENTER>: ");
+            clearScreen();
+            String[] menuItems = {
+                    "\t MAIN MENU\n\n",
+                    "\t MARTHA STOCKTON GREENGAGE FOUNDATION\n\n",
+                    "\t 1. Investment Data\n",
+                    "\t 2. Mortgage Data\n",
+                    "\t 3. Operating Expenses\n",
+                    "\t 4. Produce Reports\n",
+                    "\t 5. Quit\n\n",
+                    "Enter your choice and press <ENTER>: "
+            };
+            printMenu(menuItems);
 
             try {
                 System.in.read(choice);
                 switch ((char) choice[0]) {
                     case '1':
-                       msgCase.MSGUtilities.displaylnvestmentMenu();
+                       displaylnvestmentMenu();
                         break;
                     case '2':
-                       msgCase.MSGUtilities.displayMortgageMenu();
+                       displayMortgageMenu();
                         break;
                     case '3':
                         msgCase.AnnualOperatingExpenses.updateAnnualOperatingExpenses();
                         break;
                     case '4':
-                       msgCase.MSGUtilities.displayReportMenu();
+                       displayReportMenu();
                         break;
                     case '5':
                     case '\n':
@@ -73,17 +81,20 @@ public class MSGUtilities {
 // r
         { boolean	done;	// terminates while loop
             byte	choice[] = new byte[10];	// user's choice
-            msgCase.Investment	inv = new msgCase.Investment();	// investment record
+            Investment	inv = new Investment();	// investment record
             done = false;
             while (!done){
-                msgCase.MSGUtilities.clearScreen();
-                System.out.println("\t INVESTMENTS");
-                System.out.println("\t MARTHA STOCKTON GREENGAGE FOUNDATION");
-                System.out.println("\t 1. Add an investment \n");
-                System.out.println("\t 2. Modify a investment\n");
-                System.out.println("\t 3. Delete a investment\n");
-                System.out.println("\t 4. Exit to main menu\n");
-                System.out.println("\t Enter your choice and press <ENTER>: ");
+                clearScreen();
+                String[] menuItems = {
+                        "\t INVESTMENTS",
+                        "\t MARTHA STOCKTON GREENGAGE FOUNDATION",
+                        "\t 1. Add an investment \n",
+                        "\t 2. Modify a investment\n",
+                        "\t 3. Delete a investment\n",
+                        "\t 4. Exit to main menu\n",
+                        "\t Enter your choice and press <ENTER>: "
+                };
+                printMenu(menuItems);
 
                 try
                     {
@@ -91,15 +102,15 @@ public class MSGUtilities {
                         switch ((char) choice[0])
                         {
                             case '1':
-                                msgCase.MSGUtilities.clearScreen();
+                                clearScreen();
                                 inv.inputNewRecord();
                                 break;
                             case '2':
-                                msgCase.MSGUtilities.clearScreen();
+                                clearScreen();
                                 inv.updateRecord();
                                 break;
                             case '3':
-                                msgCase.MSGUtilities.clearScreen();
+                                clearScreen();
                                 inv.deleteRecord();
                                 break;
                             case '4':
@@ -142,29 +153,32 @@ public static void displayMortgageMenu ()
             Mortgage	mort = new Mortgage ();	// mortgage record
             done = false;
             while(!done){
-                msgCase.MSGUtilities.clearScreen ();
-                System.out.println ("\t MORTGAGES \n\n");
-                System.out.println ("\t MARTHA STOCKTON GREENGAGE FOUNDATION \n\n");
-                System.out.println ("\t 1. Add a mortgage \n\n");
-                System.out.println ("\t 2. Modify a mortgage\n");
-                System.out.println ("\t 3. Delete a mortgage \n");
-                System.out.println ("\t 4. Exit to main menu\n");
-                System.out.println("\t Enter your choice and press <ENTER>: ");
+                clearScreen ();
+                String[] menuItems = {
+                        "\t MORTGAGES \n\n",
+                        "\t MARTHA STOCKTON GREENGAGE FOUNDATION \n\n",
+                        "\t 1. Add a mortgage \n",
+                        "\t 2. Modify a mortgage\n",
+                        "\t 3. Delete a mortgage \n",
+                        "\t 4. Exit to main menu\n",
+                        "\t Enter your choice and press <ENTER>: "
+                };
+                printMenu(menuItems);
                 try
                 {
                     System.in.read (choice);
                     switch ((char) choice[0])
                     {
                         case '1':
-                            msgCase.MSGUtilities.clearScreen();
+                            clearScreen();
                             mort.inputNewRecord();
                             break;
                         case '2':
-                            msgCase.MSGUtilities.clearScreen();
+                            clearScreen();
                             mort.updateRecord();
                             break;
                         case '3':
-                            msgCase.MSGUtilities.clearScreen();
+                            clearScreen();
                             mort.deleteRecord();
                             break;
                         case '4':
@@ -210,14 +224,18 @@ public static void displayReportMenu ()
 //    Mortgage	mort = new Mortgage ();	// mortgage record
     done = false;
     while(!done){
-        msgCase.MSGUtilities.clearScreen ();
-        System.out.println ("\t REPORTS \n\n");
-        System.out.println ("\t MARTHA STOCKTON GREENGAGE FOUNDATION \n\n");
-        System.out.println ("\t 1. List of investments \n");
-        System.out.println ("\t 2. List of mortgages\n");
-        System.out.println ("\t 3. Funds available \n");
-        System.out.println ("\t 4. Exit to main menu\n");
-        System.out.println("\t Enter your choice and press <ENTER>: ");
+        clearScreen ();
+        String[] menuItems = {
+                "\t REPORTS \n\n",
+                "\t MARTHA STOCKTON GREENGAGE FOUNDATION \n\n",
+                "\t 1. List of investments \n",
+                "\t 2. List of mortgages\n",
+                "\t 3. Funds available \n",
+                "\t 4. Exit to main menu\n",
+                "\t Enter your choice and press <ENTER>: "
+        };
+        printMenu(menuItems);
+
         try
         {
             System.in.read (choice);
