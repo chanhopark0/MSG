@@ -115,7 +115,7 @@ public class Report {
             expectedTotalWeeklyNetPayments = mort.totalWeeklyNetPayments ();
             System.out.println("Funds available:"  + (expectedWeeklyInvestmentReturn -
                     (msgCase.AnnualOperatingExpenses.getAnnualOperatingExpenses () /
-                            msgCase.MSGApplication.WEEKS_IN_YEAR) +
+                            msgCase.MSGConstants.WEEKS_IN_YEAR) +
                     expectedTotalWeeklyNetPayments));
             System.out.println ("\n\n\n Press ENTER to continue ...");
             int	c;

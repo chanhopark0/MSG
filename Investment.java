@@ -39,7 +39,7 @@ public class Investment extends FinancialInstrument
                 }
                 inFile.close ();
             }
-            return (totalAnnualReturn / MSGApplication.WEEKS_IN_YEAR);
+            return (totalAnnualReturn / MSGConstants.WEEKS_IN_YEAR);
         }
         catch (Exception e) {
             System.out.println ("Error: msgCase.Investment.totalWeeklyReturnOnInvestment() eeturned a value of 0");

@@ -50,12 +50,12 @@ public class Mortgage extends FinancialInstrument
                 RandomAccessFile inFile = new RandomAccessFile(mortgageFile, "r");
                 while (inFile.getFilePointer() != inFile.length()) {
                     readRecord(inFile);
-                    capitalRepayment = price/MSGApplication.NUMBER_OF_MORTGAGE_PAYMENTS;
-                    interestPayment = mortgageBalance*MSGApplication.INTEREST_RATE/MSGApplication.WEEKS_IN_YEAR;
-                    escrowPayment = (annualPropertyTax + annualInsurancePremium)/MSGApplication.WEEKS_IN_YEAR;
+                    capitalRepayment = price/MSGConstants.NUMBER_OF_MORTGAGE_PAYMENTS;
+                    interestPayment = mortgageBalance*MSGConstants.INTEREST_RATE/MSGConstants.WEEKS_IN_YEAR;
+                    escrowPayment = (annualPropertyTax + annualInsurancePremium)/MSGConstants.WEEKS_IN_YEAR;
                     tempMortgage = capitalRepayment + interestPayment + escrowPayment;
                     expectedTotalWeeklyMortgages += tempMortgage;
-                    maximumPermittedMortgagePayment = currentWeeklyIncome * MSGApplication.MAXIMUM_PERC_OF_INCOME;
+                    maximumPermittedMortgagePayment = currentWeeklyIncome * MSGConstants.MAXIMUM_PERC_OF_INCOME;
                     if (tempMortgage > maximumPermittedMortgagePayment)
                         expectedTotalWeeklyGrants += tempMortgage - maximumPermittedMortgagePayment;
                 }
