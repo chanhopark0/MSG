@@ -276,8 +276,9 @@ public static void displayReportMenu ()
 {
     boolean	done;	//terminates whUe-loop
     byte	choice[] = new byte[10];	// user's choice
-    Investment inv = new Investment ();	// investment record
-    Mortgage	mort = new Mortgage ();	// mortgage record
+    Report report = new Report();
+//    Investment inv = new Investment ();	// investment record
+//    Mortgage	mort = new Mortgage ();	// mortgage record
     done = false;
     while(!done){
         msgCase.MSGUtilities.clearScreen ();
@@ -294,12 +295,12 @@ public static void displayReportMenu ()
             switch ((char) choice[0])
             {
                 case '1':
-                    
-                    inv.produceInvestmentReport();;
+
+                    report.produceInvestmentReport();;
                     break;
                 case '2':
-                  
-                    mort.produceMortgageReport();
+
+                    report.produceMortgageReport();
                     break;
                 case '3':
                     MSGUtilities.fundsAvailable();

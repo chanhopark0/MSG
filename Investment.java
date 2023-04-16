@@ -157,40 +157,7 @@ public class Investment extends FinancialInstrument
  //Produce Investment
 
 
- public void produceInvestmentReport() {
-    try {
-        File investmentFile = new File("investment.dat");
-        int i = 0;
-        if (investmentFile.exists()) {
-            RandomAccessFile inFile = new RandomAccessFile(investmentFile, "r");
-            while (inFile.getFilePointer() != inFile.length()) {
-                if (((i % 4) == 0) && (i != 0)) {
-                    System.out.println("\n\nPress <ENTER> to view the next screen...");
-                    System.in.read();
-                }
-                if ((i % 4) == 0) {
-                    MSGUtilities.clearScreen();
-                    System.out.println("\n\n\t Martha Stockton Greengage Foundation");
-                    System.out.println("\tINVESTMENT REPORT\n");
-                }
-                System.out.println("--------------------------------------------------------");
-                readRecord(inFile);
-                displayRecord();
-                i++;
-            }
-            inFile.close();
-        } else {
-            System.out.println("\nNo investments currently exist.");
-        }
-        System.out.println("\n\n Press ENTER to continue ...");
-        int c;
-        c = System.in.read();
-        System.out.println (c);
-    } catch (Exception e) {
-        System.out.println("Error: Investment.produceInvestmentReport()");
-        System.out.println("\t" + e);
-    }
-  } // produceInvestmentReport()
+
 
 
   //--------------------------------------------------------------------------
