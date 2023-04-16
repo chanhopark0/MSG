@@ -101,4 +101,31 @@ public class Report {
     }
 
     //-----------------------------------------------------------------------------------------
+    //Computes total funds available for porchasing new mortgages in the current week
+    public static void fundsAvailable() {
+        try {
+            float expectedWeeklyInvestmentReturn = (float) 0.0;
+            //EXPECTED WEEKLY INVESTMENT RETURN
+            float expectedTotalWeeklyNetPayments = (float) 0.0;
+            //EXPECTED  TOTAL MORTAGE PAYMENTS LESS TOTAL WEEKLY GRANTS
+
+            msgCase.Investment	Inv = new msgCase.Investment ();	// investment record
+            Mortgage	mort = new Mortgage ();	// mortgage record
+            expectedWeeklyInvestmentReturn = Inv.totalWeeklyReturnOnInvestment();
+            expectedTotalWeeklyNetPayments = mort.totalWeeklyNetPayments ();
+            System.out.println("Funds available:"  + (expectedWeeklyInvestmentReturn -
+                    (msgCase.AnnualOperatingExpenses.getAnnualOperatingExpenses () /
+                            msgCase.MSGApplication.WEEKS_IN_YEAR) +
+                    expectedTotalWeeklyNetPayments));
+            System.out.println ("\n\n\n Press ENTER to continue ...");
+            int	c;
+            c = System.in.read ();
+        }
+        catch (Exception e)
+        {
+            System.out.println ("***** Error: msgCase.MSGUtilities.fundsAvailable()********** ");
+            System.out.println ("\t" + e);
+        }
+    } //fundsAvailable ()
+//-----------------------------------------------------------------------------------------
 } // Class Report()

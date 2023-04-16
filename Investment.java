@@ -7,13 +7,11 @@ import java.util.Calendar;
 import java.util.Date;
 public class Investment extends FinancialInstrument
 {
-    
     private String investmentID;
     private String investmentName;
     private float expectedAnnualReturn;
 //    private SimpleDateFormat expectedAnnualReturnUpdated;
     private String expectedAnnualReturnUpdated;
-
     public String getInvestmentID() {
         return investmentID;
     }
@@ -23,13 +21,9 @@ public class Investment extends FinancialInstrument
     public float getExpectedAnnualReturn() {
         return expectedAnnualReturn;
     }
-//    public SimpleDateFormat getExpectedAnnualReturnUpdated() {
-//         return expectedAnnualReturnUpdated;
-//        }
      public String getExpectedAnnualReturnUpdated() {
          return expectedAnnualReturnUpdated;
      }
-
 
     public float totalWeeklyReturnOnInvestment()
     {
@@ -115,19 +109,12 @@ public class Investment extends FinancialInstrument
         }
 
         expectedAnnualReturnUpdated = input.toString();
-        //SimpleDateFormat sdf  = new SimpleDateFormat("dd/MM/yyyy");
-        // Date parse = sdf.parse(input.toString());
-        // Calendar  expectedAnnualReturnUpdated = Calendar.getInstance();
-        // expectedAnnualReturnUpdated.setTime(parse);
-        // System.out.println(expectedAnnualReturnUpdated.get(Calendar.MONTH) + expectedAnnualReturnUpdated.get(Calendar.DATE) + expectedAnnualReturnUpdated.get(Calendar.YEAR));
     }
     catch (Exception e) {
         System.out.println ("Error: msgCase.Investment.readRecord()");
         System.out.println ("\t" + e);
     }
  } //readRecord()
-
-
     //-----------------------------------------------------
     public void performDeletion(){
     try {
@@ -154,14 +141,7 @@ public class Investment extends FinancialInstrument
     }
   } //performDeletion()
  //----------------------------------------------------------------------------------
- //Produce Investment
-
-
-
-
-
-  //--------------------------------------------------------------------------
-  //Put Record 
+   //Put Record
   public void putRecord() {
     try {
         File investmentFile = new File("investment.dat");
@@ -198,8 +178,6 @@ public class Investment extends FinancialInstrument
         System.out.println("\t" + e);
     }
    } //putRecord()
-
-
    //----------------------------------------------------------------
 
    public void readInvestmentData () {
@@ -356,11 +334,8 @@ public class Investment extends FinancialInstrument
         }
         } //updateRecord()
 
-
     //------------------------------------------------------------------------------------------------
-   
 
-  
     public void writeRecord(RandomAccessFile fileName) {
         try {
             fileName.writeBytes(investmentID + "|" + investmentName + "|");
@@ -410,12 +385,9 @@ public class Investment extends FinancialInstrument
         // System.out.println (expectedAnnualReturnUpdated.get(Calendar.YEAR));
 
     } //displayRecord()
-
     @Override
     public void obtainNewData() {
         readInvestmentData();
     } //obtainNewData()
 
-    
-   
 }

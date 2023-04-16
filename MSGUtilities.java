@@ -1,79 +1,8 @@
 package msgCase;
 import java.util.*;
 public class MSGUtilities {
-    //CLASS METHODS 
+    //CLASS METHODS
 
-    //OBTAINS the new annual operating expenses from user, validates, and then writes the data to the operating expenses file 
-    public static void updateAnnualOperatingExpenses() {
-
-        try {
-            char c;
-            StringBuffer input;
-            float newAnnualOperatingExpenses;
-
-            MSGUtilities.clearScreen();
-            System.out.println("\nEnter new annual operating expenses:");
-            input = new StringBuffer ();
-            while((c = (char) System.in.read ()) != '\n') {
-                input.append (c);
-            }
-            Float tempFloat = Float.parseFloat(input.toString());
-            newAnnualOperatingExpenses = tempFloat.floatValue();
-            MSGApplication.setAnnualOperatingExpenses(newAnnualOperatingExpenses);
-        }
-        catch (Exception e) {
-            System.out.println ("Error: MSGUtil.updateAnnualOperatingExpenses()");
-            System.out.println ("\t" + e);
-        }
-        // try {
-        //     char c;
-        //     StringBuffer input;
-        //     float newAnnualOperatingExpenses;
-
-        //     MSGUtilities.clearScreen();
-        //     System.out.println("\nEnter new annual operating expenses:");
-        //     input = new StringBuffer ();
-        //     while((c = (char) System.in.read ()) != '\n') {
-        //         input.append (c);
-        //     }
-        //     Float tempFloat = Float.parseFloat(input.toString());
-        //     newAnnualOperatingExpenses = tempFloat.floatValue();
-        //     MSGApplication.setAnnualOperatingExpenses(newAnnualOperatingExpenses);
-        // }
-        // catch (Exception e) {
-        //     System.out.println ("Error: MSGUtil.updateAnnualOperatingExpenses()");
-        //     System.out.println ("\t" + e);
-        // }
-    } // updateAnnualOperatingExpenses()
-
-//-------------------------------------------------------------
-//Computes total funds available for porchasing new mortgages in the current week    
-public static void fundsAvailable() {
-        try {
-            float expectedWeeklyInvestmentReturn = (float) 0.0;
-                            //EXPECTED WEEKLY INVESTMENT RETURN
-            float expectedTotalWeeklyNetPayments = (float) 0.0;
-                            //EXPECTED  TOTAL MORTAGE PAYMENTS LESS TOTAL WEEKLY GRANTS
-
-            msgCase.Investment	Inv = new msgCase.Investment ();	// investment record
-            Mortgage	mort = new Mortgage ();	// mortgage record
-            expectedWeeklyInvestmentReturn = Inv.totalWeeklyReturnOnInvestment();
-            expectedTotalWeeklyNetPayments = mort.totalWeeklyNetPayments ();
-            System.out.println("Funds available:"  + (expectedWeeklyInvestmentReturn -
-            (msgCase.MSGApplication.getAnnualOperatingExpenses () /
-                    msgCase.MSGApplication.WEEKS_IN_YEAR) +
-                    expectedTotalWeeklyNetPayments));
-            System.out.println ("\n\n\n Press ENTER to continue ...");
-            int	c;
-            c = System.in.read ();
-        }
-        catch (Exception e)
-        {
-            System.out.println ("***** Error: msgCase.MSGUtilities.fundsAvailable()********** ");
-            System.out.println ("\t" + e);
-        }
-    } //fundsAvailable ()
-//-----------------------------------------------------------------------------------------
     public static void clearScreen () {
         int	i;
         for (i = 0; i < 26; i++) {
@@ -93,7 +22,7 @@ public static void fundsAvailable() {
             MSGUtilities.clearScreen();
             System.out.println("\t MAIN MENU\n\n");
             System.out.println("\t MARTHA STOCKTON GREENGAGE FOUNDATION\n\n");
-            System.out.println("\t 1. msgCase.Investment Data\n");
+            System.out.println("\t 1. Investment Data\n");
             System.out.println("\t 2. Mortgage Data\n");
             System.out.println("\t 3. Operating Expenses\n");
             System.out.println("\t 4. Produce Reports\n");
@@ -110,7 +39,7 @@ public static void fundsAvailable() {
                        msgCase.MSGUtilities.displayMortgageMenu();
                         break;
                     case '3':
-                        MSGUtilities.updateAnnualOperatingExpenses();
+                        msgCase.AnnualOperatingExpenses.updateAnnualOperatingExpenses();
                         break;
                     case '4':
                        msgCase.MSGUtilities.displayReportMenu();
@@ -150,10 +79,10 @@ public static void fundsAvailable() {
                 msgCase.MSGUtilities.clearScreen();
                 System.out.println("\t INVESTMENTS");
                 System.out.println("\t MARTHA STOCKTON GREENGAGE FOUNDATION");
-                System.out.println("\t 1.	Add an investment \n");
-                System.out.println("\t 2.	Modify a investment\n");
-                System.out.println("\t 3.Delete a investment\n");
-                System.out.println("\t Exit to main menu\n");
+                System.out.println("\t 1. Add an investment \n");
+                System.out.println("\t 2. Modify a investment\n");
+                System.out.println("\t 3. Delete a investment\n");
+                System.out.println("\t 4. Exit to main menu\n");
                 System.out.println("\t Enter your choice and press <ENTER>: ");
 
                 try
@@ -216,10 +145,10 @@ public static void displayMortgageMenu ()
                 msgCase.MSGUtilities.clearScreen ();
                 System.out.println ("\t MORTGAGES \n\n");
                 System.out.println ("\t MARTHA STOCKTON GREENGAGE FOUNDATION \n\n");
-                System.out.println ("\t 1.Add a mortgage \n\n");
-                System.out.println ("\t 2.Modify a mortgage\n");
-                System.out.println ("\t 3.Delete a mortgage \n");
-                System.out.println ("\t 4.Exit to main menu\n");
+                System.out.println ("\t 1. Add a mortgage \n\n");
+                System.out.println ("\t 2. Modify a mortgage\n");
+                System.out.println ("\t 3. Delete a mortgage \n");
+                System.out.println ("\t 4. Exit to main menu\n");
                 System.out.println("\t Enter your choice and press <ENTER>: ");
                 try
                 {
@@ -284,10 +213,10 @@ public static void displayReportMenu ()
         msgCase.MSGUtilities.clearScreen ();
         System.out.println ("\t REPORTS \n\n");
         System.out.println ("\t MARTHA STOCKTON GREENGAGE FOUNDATION \n\n");
-        System.out.println ("\t 1.List of investments \n");
-        System.out.println ("\t 2.List of mortgages\n");
-        System.out.println ("\t 3.Funds available \n");
-        System.out.println ("\t 4.Exit to main menu\n");
+        System.out.println ("\t 1. List of investments \n");
+        System.out.println ("\t 2. List of mortgages\n");
+        System.out.println ("\t 3. Funds available \n");
+        System.out.println ("\t 4. Exit to main menu\n");
         System.out.println("\t Enter your choice and press <ENTER>: ");
         try
         {
@@ -303,7 +232,7 @@ public static void displayReportMenu ()
                     report.produceMortgageReport();
                     break;
                 case '3':
-                    MSGUtilities.fundsAvailable();
+                    report.fundsAvailable();
                     break;
                 case '4':
 
